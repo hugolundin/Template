@@ -41,7 +41,6 @@ class MainViewController: UIViewController, UITextViewDelegate {
         }
         
         // action.isEnabled = true
-        
         return true
     }
 

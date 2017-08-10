@@ -15,6 +15,7 @@
 		F09BB2AD1F3D0127009077F2 /* String+lines.swift in Sources */ = {isa = PBXBuildFile; fileRef = F09BB2AC1F3D0127009077F2 /* String+lines.swift */; };
 		F09BB2AF1F3D02DC009077F2 /* String+trimmed.swift in Sources */ = {isa = PBXBuildFile; fileRef = F09BB2AE1F3D02DC009077F2 /* String+trimmed.swift */; };
 		F09BB2B41F3D069D009077F2 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F09BB2B31F3D069D009077F2 /* MainViewController.swift */; };
+		F09BB2B61F3D0F3B009077F2 /* Todoist.swift in Sources */ = {isa = PBXBuildFile; fileRef = F09BB2B51F3D0F3B009077F2 /* Todoist.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +41,7 @@
 		F09BB2AC1F3D0127009077F2 /* String+lines.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "String+lines.swift"; path = "Extensions/String+lines.swift"; sourceTree = "<group>"; };
 		F09BB2AE1F3D02DC009077F2 /* String+trimmed.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "String+trimmed.swift"; path = "Extensions/String+trimmed.swift"; sourceTree = "<group>"; };
 		F09BB2B31F3D069D009077F2 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MainViewController.swift; path = Controllers/MainViewController.swift; sourceTree = "<group>"; };
+		F09BB2B51F3D0F3B009077F2 /* Todoist.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Todoist.swift; path = Model/Todoist.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,6 +106,7 @@
 		F09BB2A71F3CFF55009077F2 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				F09BB2B51F3D0F3B009077F2 /* Todoist.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -249,6 +252,7 @@
 			files = (
 				F09BB2AD1F3D0127009077F2 /* String+lines.swift in Sources */,
 				F09BB2881F3CFE95009077F2 /* AppDelegate.swift in Sources */,
+				F09BB2B61F3D0F3B009077F2 /* Todoist.swift in Sources */,
 				F09BB2AF1F3D02DC009077F2 /* String+trimmed.swift in Sources */,
 				F09BB2B41F3D069D009077F2 /* MainViewController.swift in Sources */,
 			);
