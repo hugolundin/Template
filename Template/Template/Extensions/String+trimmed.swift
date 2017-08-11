@@ -10,8 +10,8 @@ import Foundation
 
 extension String {
     
-    /*
-     Return the String Without Trailing Whitespace.
+    /**
+     Return `self` Without Trailing Whitespace.
      */
     var trimmed: String {
         return self.trimmingCharacters(in: NSCharacterSet.whitespaces)

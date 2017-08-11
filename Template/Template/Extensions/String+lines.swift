@@ -10,7 +10,7 @@ import Foundation
 
 extension String {
     
-    /*
+    /**
      Return an Array Containing the Elements of the Input String Split by Newlines.
      */
     var lines: [String] {
@@ -19,7 +19,7 @@ extension String {
         return result
     }
     
-    /*
+    /**
      Return an Integer Representing Number of Lines in a String.
      
      This may not be the most effecient solution, but Todoist currently 
