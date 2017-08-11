@@ -11,10 +11,7 @@ import UIKit
 class MainViewController: UIViewController, UITextViewDelegate {
     
     @IBOutlet weak var textView: UITextView! {
-        didSet {
-            // Remove trailing whitespace above text
-            self.automaticallyAdjustsScrollViewInsets = false
-            
+        didSet {            
             textView.delegate = self
             textView.becomeFirstResponder()
         }
