@@ -9,8 +9,18 @@
 import Foundation
 import UIKit
 
-struct Dependencies {
-    var todoist: Todoist?
-    var problem: String?
-    var settings = [Settings]()
+protocol SettingsDelegate {
+    var settings: [Settings] { get set }
+}
+
+protocol SettingsClient {
+    var delegate: SettingsDelegate? { get set }
+}
+
+protocol TodoistDelegate {
+    var todoist: Todoist? { get set }
+}
+
+protocol TodoistClient {
+    var delegate: TodoistDelegate? { get set }
 }

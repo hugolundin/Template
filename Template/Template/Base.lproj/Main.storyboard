@@ -9,6 +9,14 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--Settings-->
+        <scene sceneID="Vay-Xg-phJ">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Settings" id="1ip-5T-adR" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4qb-Sk-Xne" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1792" y="136"/>
+        </scene>
         <!--Template-->
         <scene sceneID="tne-QT-ifu">
             <objects>
@@ -37,7 +45,11 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Template" id="JXW-8S-Ro2">
-                        <barButtonItem key="leftBarButtonItem" title="Settings" id="WPD-is-Ec4"/>
+                        <barButtonItem key="leftBarButtonItem" title="Settings" id="WPD-is-Ec4">
+                            <connections>
+                                <segue destination="1ip-5T-adR" kind="show" id="OIa-dz-6Yd"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="action" id="qJc-55-F2j"/>
                     </navigationItem>
                     <connections>

@@ -9,13 +9,13 @@
 import Foundation
 
 protocol Settings {
-    
+    var apiKey: String { get set }
 }
 
 struct Local: Settings {
-    
+    var apiKey = "123"
 }
 
 struct Cloud: Settings {
-    
+    var apiKey = "123"
 }

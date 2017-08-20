@@ -8,18 +8,14 @@
 
 import UIKit
 
-class MainViewController: UIViewController, UITextViewDelegate {
+class MainViewController: UIViewController, UITextViewDelegate, SettingsDelegate, TodoistDelegate {
     
-    let settings = [Settings]()
+    var settings: [Settings] = []
     var todoist: Todoist?
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-    }
+    var csv: CSV? 
     
     /**
-     Main Text View Were Lists Are Supposed to Be Written.
+     Text View Were Lists Are Written.
      */
     @IBOutlet weak var textView: UITextView! {
         didSet {            
@@ -31,26 +27,17 @@ class MainViewController: UIViewController, UITextViewDelegate {
     @IBOutlet weak var shareButton: UIBarButtonItem!
     @IBOutlet weak var settingsButton: UIBarButtonItem!
     
-    
-    /**
-     Boolean Representing Whether Text View Editing Is Allowed or Not.
-     */
-    var allowed: Bool {
-        return textView.text.numberOfLines < 5
+    override func viewDidLoad() {
+        super.viewDidLoad()
     }
     
-    /**
-     ´shouldChangeTextIn´ React on Changes in the Main `UITextView`, and Uses `allowed` to Decide
-     Whether Editing Is Allowed or Not.
-     
-     If editing is not allowed, present a warning and allow the user to fix the problems. The action
-     button also is disabled while editing is not allowed.
-     */
-    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
-        if !allowed {
-          
+    override func viewDidAppear(_ animated: Bool) {
+        print(settings[0].apiKey)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let controller = segue.destination as? SettingsViewController {
+            controller.delegate = self
         }
-        
-        return true
     }
 }

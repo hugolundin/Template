@@ -8,9 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		F03CC7061F3DC49D00DC59BE /* Introduction.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F03CC7051F3DC49D00DC59BE /* Introduction.storyboard */; };
-		F03CC7081F3DC4BC00DC59BE /* Problem.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F03CC7071F3DC4BC00DC59BE /* Problem.storyboard */; };
-		F03CC70A1F3DC62100DC59BE /* ProblemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F03CC7091F3DC62100DC59BE /* ProblemViewController.swift */; };
+		F06C84AF1F3F42EF002112A1 /* Dependencies.swift in Sources */ = {isa = PBXBuildFile; fileRef = F06C84AE1F3F42EF002112A1 /* Dependencies.swift */; };
 		F07B841A1F3DBE2C00AD6C52 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = F07B84191F3DBE2C00AD6C52 /* Settings.swift */; };
+		F09301131F49C7D80042D948 /* Todoist.swift in Sources */ = {isa = PBXBuildFile; fileRef = F09301121F49C7D80042D948 /* Todoist.swift */; };
+		F09301151F49D4610042D948 /* CSV.swift in Sources */ = {isa = PBXBuildFile; fileRef = F09301141F49D4610042D948 /* CSV.swift */; };
 		F09BB2881F3CFE95009077F2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F09BB2871F3CFE95009077F2 /* AppDelegate.swift */; };
 		F09BB28D1F3CFE95009077F2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F09BB28B1F3CFE95009077F2 /* Main.storyboard */; };
 		F09BB28F1F3CFE95009077F2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F09BB28E1F3CFE95009077F2 /* Assets.xcassets */; };
@@ -19,7 +20,8 @@
 		F09BB2AD1F3D0127009077F2 /* String+lines.swift in Sources */ = {isa = PBXBuildFile; fileRef = F09BB2AC1F3D0127009077F2 /* String+lines.swift */; };
 		F09BB2AF1F3D02DC009077F2 /* String+trimmed.swift in Sources */ = {isa = PBXBuildFile; fileRef = F09BB2AE1F3D02DC009077F2 /* String+trimmed.swift */; };
 		F09BB2B41F3D069D009077F2 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F09BB2B31F3D069D009077F2 /* MainViewController.swift */; };
-		F09BB2B61F3D0F3B009077F2 /* Todoist.swift in Sources */ = {isa = PBXBuildFile; fileRef = F09BB2B51F3D0F3B009077F2 /* Todoist.swift */; };
+		F0B9A41D1F49A04900482EE3 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0B9A41C1F49A04900482EE3 /* SettingsViewController.swift */; };
+		F0B9A41F1F49A07000482EE3 /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F0B9A41E1F49A07000482EE3 /* Settings.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,9 +36,10 @@
 
 /* Begin PBXFileReference section */
 		F03CC7051F3DC49D00DC59BE /* Introduction.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Introduction.storyboard; path = Views/Introduction.storyboard; sourceTree = "<group>"; };
-		F03CC7071F3DC4BC00DC59BE /* Problem.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Problem.storyboard; path = Views/Problem.storyboard; sourceTree = "<group>"; };
-		F03CC7091F3DC62100DC59BE /* ProblemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ProblemViewController.swift; path = Controllers/ProblemViewController.swift; sourceTree = "<group>"; };
+		F06C84AE1F3F42EF002112A1 /* Dependencies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Dependencies.swift; path = Model/Dependencies.swift; sourceTree = "<group>"; };
 		F07B84191F3DBE2C00AD6C52 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Settings.swift; path = Model/Settings.swift; sourceTree = "<group>"; };
+		F09301121F49C7D80042D948 /* Todoist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Todoist.swift; path = Model/Todoist.swift; sourceTree = "<group>"; };
+		F09301141F49D4610042D948 /* CSV.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSV.swift; sourceTree = "<group>"; };
 		F09BB2841F3CFE95009077F2 /* Template.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Template.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F09BB2871F3CFE95009077F2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = "Supporting Files/AppDelegate.swift"; sourceTree = "<group>"; };
 		F09BB28C1F3CFE95009077F2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -49,7 +52,8 @@
 		F09BB2AC1F3D0127009077F2 /* String+lines.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "String+lines.swift"; path = "Extensions/String+lines.swift"; sourceTree = "<group>"; };
 		F09BB2AE1F3D02DC009077F2 /* String+trimmed.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "String+trimmed.swift"; path = "Extensions/String+trimmed.swift"; sourceTree = "<group>"; };
 		F09BB2B31F3D069D009077F2 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MainViewController.swift; path = Controllers/MainViewController.swift; sourceTree = "<group>"; };
-		F09BB2B51F3D0F3B009077F2 /* Todoist.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Todoist.swift; path = Model/Todoist.swift; sourceTree = "<group>"; };
+		F0B9A41C1F49A04900482EE3 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SettingsViewController.swift; path = Controllers/SettingsViewController.swift; sourceTree = "<group>"; };
+		F0B9A41E1F49A07000482EE3 /* Settings.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Settings.storyboard; path = Views/Settings.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,8 +118,10 @@
 		F09BB2A71F3CFF55009077F2 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				F09BB2B51F3D0F3B009077F2 /* Todoist.swift */,
+				F09301121F49C7D80042D948 /* Todoist.swift */,
+				F06C84AE1F3F42EF002112A1 /* Dependencies.swift */,
 				F07B84191F3DBE2C00AD6C52 /* Settings.swift */,
+				F09301141F49D4610042D948 /* CSV.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -125,7 +131,7 @@
 			children = (
 				F09BB28B1F3CFE95009077F2 /* Main.storyboard */,
 				F03CC7051F3DC49D00DC59BE /* Introduction.storyboard */,
-				F03CC7071F3DC4BC00DC59BE /* Problem.storyboard */,
+				F0B9A41E1F49A07000482EE3 /* Settings.storyboard */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -134,7 +140,7 @@
 			isa = PBXGroup;
 			children = (
 				F09BB2B31F3D069D009077F2 /* MainViewController.swift */,
-				F03CC7091F3DC62100DC59BE /* ProblemViewController.swift */,
+				F0B9A41C1F49A04900482EE3 /* SettingsViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -244,9 +250,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F03CC7081F3DC4BC00DC59BE /* Problem.storyboard in Resources */,
 				F03CC7061F3DC49D00DC59BE /* Introduction.storyboard in Resources */,
 				F09BB2921F3CFE95009077F2 /* LaunchScreen.storyboard in Resources */,
+				F0B9A41F1F49A07000482EE3 /* Settings.storyboard in Resources */,
 				F09BB28F1F3CFE95009077F2 /* Assets.xcassets in Resources */,
 				F09BB28D1F3CFE95009077F2 /* Main.storyboard in Resources */,
 			);
@@ -266,11 +272,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F03CC70A1F3DC62100DC59BE /* ProblemViewController.swift in Sources */,
+				F09301131F49C7D80042D948 /* Todoist.swift in Sources */,
 				F07B841A1F3DBE2C00AD6C52 /* Settings.swift in Sources */,
+				F06C84AF1F3F42EF002112A1 /* Dependencies.swift in Sources */,
+				F0B9A41D1F49A04900482EE3 /* SettingsViewController.swift in Sources */,
 				F09BB2AD1F3D0127009077F2 /* String+lines.swift in Sources */,
+				F09301151F49D4610042D948 /* CSV.swift in Sources */,
 				F09BB2881F3CFE95009077F2 /* AppDelegate.swift in Sources */,
-				F09BB2B61F3D0F3B009077F2 /* Todoist.swift in Sources */,
 				F09BB2AF1F3D02DC009077F2 /* String+trimmed.swift in Sources */,
 				F09BB2B41F3D069D009077F2 /* MainViewController.swift in Sources */,
 			);

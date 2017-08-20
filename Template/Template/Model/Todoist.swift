@@ -2,7 +2,7 @@
 //  Todoist.swift
 //  Template
 //
-//  Created by Hugo Lundin on 2017-08-11.
+//  Created by Hugo Lundin on 2017-08-20.
 //  Copyright © 2017 Hugo Lundin. All rights reserved.
 //
 
@@ -17,42 +17,28 @@ public struct Todoist {
         static let `import`: URL = URL(string: "https://todoist.com/API/v7/templates/import_into_project")!
     }
     
-    /**
-     Represents the Todoist API Command Limit per Request.
-     */
-    public let limit: Int = 100
+    private let limit: Int = 100
     
     /**
-     API Key Required to Communicate with Todoist.
+     Return projects coupled with current `apiKey`. If the key isn't valid, function will return `nil` and `completionHandler` will return an `error`.
      */
-    public let apiKey: String
-    
-    /**
-     Optional Initalizer That Returns `nil` If  `apikey` Is Invalid.
-
-     - Parameters:
-         - apiKey: API Key retrieved from Todoist.com.
-     
-     - Returns:
-         Either an authenticated `Todoist` struct or `nil`.
-     */
-    public init?(apiKey: String) {
-        self.apiKey = apiKey
-        
-        guard Todoist.validate(self.apiKey) else {
-            return nil
+    public func projects(for apiKey: String, completion: ((Error?) -> ())?) -> [String]? {
+        if let completion = completion {
+            completion(nil)
         }
-    }
-    
-    public func sync() {
         
+        return ["Personal", "School", "Lists", "Developer"]
     }
     
-    public func add(to template: String) {
+    public func verify(apiKey: String, completion: ((Error?) -> ())?) -> Bool {
+        if let completion = completion {
+            completion(nil)
+        }
         
+        return apiKey == "123" || apiKey == "456"
     }
     
-    private static func validate(_ apiKey: String) -> Bool {
-        return true
+    public func post(csv: String) {
+        
     }
 }
