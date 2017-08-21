@@ -8,21 +8,27 @@
 
 import UIKit
 
-class SettingsViewController: UITableViewController, SettingsClient {
+class SettingsViewController: UITableViewController {
     
+    // MARK: - Outlets
+    @IBOutlet weak var apiKeyTextField: UITextField! {
+        didSet {
+            apiKeyTextField?.text = settingsDelegate?.settings?.apiKey ?? String.empty
+        }
+    }
+    
+    // MARK: - Delegates
+    var todoistDelegate: TodoistDelegate?
+    var settingsDelegate: SettingsDelegate?
+    
+    // MARK: - Row Identifiers
     private struct Rows {
         static let apiKey: Int = 0
         static let verify: Int = 1
     }
-    
-    @IBOutlet weak var apiKeyTextField: UITextField!
-    
-    var delegate: SettingsDelegate?
-    private var todoist = Todoist()
-    
+        
     override func viewDidLoad() {
         super.viewDidLoad()
-        
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -30,14 +36,20 @@ class SettingsViewController: UITableViewController, SettingsClient {
             apiKeyTextField.becomeFirstResponder()
         }
         
+        guard let todoist = todoistDelegate?.todoist else {
+            return
+        }
+        
+        guard let settings = settingsDelegate?.settings else {
+            return
+        }
+        
         if indexPath.row == Rows.verify {
             let apiKey = apiKeyTextField.text ?? ""
-            
             if todoist.verify(apiKey: apiKey, completion: nil) {
-                delegate?.settings[0].apiKey = apiKey
-                
+                settings.apiKey = apiKey
                 self.apiKeyTextField.textColor = UIColor.black
-                apiKeyTextField.resignFirstResponder()
+                self.apiKeyTextField.resignFirstResponder()
             } else {
                 self.apiKeyTextField.textColor = UIColor.red
             }

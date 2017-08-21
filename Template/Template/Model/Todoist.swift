@@ -8,10 +8,20 @@
 
 import Foundation
 
+protocol Todoist {
+    func projects(for apiKey: String, completion: ((Error?) -> ())?) -> [String]?
+    func verify(apiKey: String, completion: ((Error?) -> ())?) -> Bool
+    func post(csv: String)
+}
+
+protocol TodoistDelegate {
+    var todoist: Todoist? { get set }
+}
+
 /**
  Struct for Communicating with the Todoist API.
  */
-public struct Todoist {
+public struct DefaultTodoist: Todoist {
     internal struct URLs {
         static let sync: URL = URL(string: "https://todoist.com/API/v7/sync")!
         static let `import`: URL = URL(string: "https://todoist.com/API/v7/templates/import_into_project")!

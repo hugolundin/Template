@@ -15,28 +15,31 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
-        
-        // Instantiate Required Dependencies
-        let local = Local()
-        let todoist = Todoist()
-        let csv = CSV()
+        // Instantiate Dependencies
+        let settings: Settings = Local()
+        let todoist: Todoist = DefaultTodoist()
+        let csv: CSV = DefaultCSV()
         
         let controller = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController()
         
         // Perform Dependency Injection.
         // Since they are wrapped in `UINavigationController`,
         // we need to iterate and look for the correct delegates.
+        typealias dependencies = TodoistDelegate & SettingsDelegate & CSVDelegate
         for child in controller?.childViewControllers ?? [] {
-            if var destination = child as? TodoistDelegate {
+            if var destination = child as? dependencies {
                 destination.todoist = todoist
+                destination.settings = settings
+                destination.csv = csv
             }
         }
         
-        for child in controller?.childViewControllers ?? [] {
-            if var destination = child as? SettingsDelegate {
-                destination.settings.append(local)
-            }
+        // UIViewController & Delegate, with Delegate, return destination that is UIViewController and Delegate
+        /*
+        inject(to: controller, with: TodoistDelegate) { destination in
+            destination.todoist = todoist
         }
+         */
         
         show(controller)
         
@@ -47,6 +50,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.rootViewController = controller
     }
+    
+    /*
+    private func inject<P, T: UIViewController & P>(to controller: T?, with: P.Type, completion: (UIViewController & P) -> ()) {
+        for child in controller?.childViewControllers ?? [] {
+            if let destination = child as? P {
+                completion(destination as! UIViewController)
+            }
+        }
+    }
+     */
     
     func applicationWillResignActive(_ application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

@@ -8,36 +8,35 @@
 
 import UIKit
 
-class MainViewController: UIViewController, UITextViewDelegate, SettingsDelegate, TodoistDelegate {
+class MainViewController: UIViewController, UITextViewDelegate, SettingsDelegate, TodoistDelegate, CSVDelegate {
     
-    var settings: [Settings] = []
+    // MARK: - Dependencies
+    var settings: Settings? 
     var todoist: Todoist?
-    var csv: CSV? 
+    var csv: CSV?
     
-    /**
-     Text View Were Lists Are Written.
-     */
+    // MARK: - Outlets
+    @IBOutlet weak var shareButton: UIBarButtonItem!
+    @IBOutlet weak var settingsButton: UIBarButtonItem!
     @IBOutlet weak var textView: UITextView! {
-        didSet {            
+        didSet {
             textView.delegate = self
             textView.becomeFirstResponder()
         }
     }
-    
-    @IBOutlet weak var shareButton: UIBarButtonItem!
-    @IBOutlet weak var settingsButton: UIBarButtonItem!
     
     override func viewDidLoad() {
         super.viewDidLoad()
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        print(settings[0].apiKey)
+        print(settings?.apiKey ?? "No apiKey")
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let controller = segue.destination as? SettingsViewController {
-            controller.delegate = self
+            controller.settingsDelegate = self
+            controller.todoistDelegate = self
         }
     }
 }

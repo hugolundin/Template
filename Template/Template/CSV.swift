@@ -12,6 +12,10 @@ protocol CSV {
     
 }
 
-struct CSVManager: CSV {
+protocol CSVDelegate {
+    var csv: CSV? { get set }
+}
+
+struct DefaultCSV: CSV {
     
 }

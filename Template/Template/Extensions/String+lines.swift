@@ -21,9 +21,6 @@ extension String {
     
     /**
      Return an Integer Representing Number of Lines in a String.
-     
-     This may not be the most effecient solution, but Todoist currently 
-     only allow 100 commands per request.
      */
     var numberOfLines: Int {
         return lines.count

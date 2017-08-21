@@ -8,14 +8,14 @@
 
 import Foundation
 
-protocol Settings {
+protocol Settings: class {
     var apiKey: String { get set }
 }
 
-struct Local: Settings {
-    var apiKey = "123"
+protocol SettingsDelegate {
+    var settings: Settings? { get set }
 }
 
-struct Cloud: Settings {
+class Local: Settings {
     var apiKey = "123"
 }
