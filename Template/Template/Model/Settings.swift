@@ -8,14 +8,24 @@
 
 import Foundation
 
-protocol Settings: class {
+protocol SettingsProvider: class {
     var apiKey: String { get set }
 }
 
-protocol SettingsDelegate {
-    var settings: Settings? { get set }
+protocol HasSettingsProvider {
+    var settings: SettingsProvider? { get set }
 }
 
-class Local: Settings {
-    var apiKey = "123"
+class Local: SettingsProvider {
+    private let defaults = UserDefaults.standard
+    
+    var apiKey: String {
+        get {
+            return defaults.string(forKey: #function) ?? ""
+        }
+        
+        set {
+            defaults.set(newValue, forKey: #function)
+        }
+    }
 }

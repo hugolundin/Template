@@ -8,14 +8,14 @@
 
 import Foundation
 
-protocol CSV {
+protocol CSVProvider {
     
 }
 
-protocol CSVDelegate {
-    var csv: CSV? { get set }
+protocol HasCSVProvider {
+    var csv: CSVProvider? { get set }
 }
 
-struct DefaultCSV: CSV {
+struct CSV: CSVProvider {
     
 }

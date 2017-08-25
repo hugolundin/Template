@@ -8,20 +8,20 @@
 
 import Foundation
 
-protocol Todoist {
-    func projects(for apiKey: String, completion: ((Error?) -> ())?) -> [String]?
-    func verify(apiKey: String, completion: ((Error?) -> ())?) -> Bool
-    func post(csv: String)
+protocol TodoistProvider {
+    func projects(for apiKey: String) throws -> [String]
+    func verify(apiKey: String) throws -> Bool
+    func post(csv: String) throws
 }
 
-protocol TodoistDelegate {
-    var todoist: Todoist? { get set }
+protocol HasTodoistProvider {
+    var todoist: TodoistProvider? { get set }
 }
 
 /**
  Struct for Communicating with the Todoist API.
  */
-public struct DefaultTodoist: Todoist {
+public struct Todoist: TodoistProvider {
     internal struct URLs {
         static let sync: URL = URL(string: "https://todoist.com/API/v7/sync")!
         static let `import`: URL = URL(string: "https://todoist.com/API/v7/templates/import_into_project")!
@@ -32,23 +32,15 @@ public struct DefaultTodoist: Todoist {
     /**
      Return projects coupled with current `apiKey`. If the key isn't valid, function will return `nil` and `completionHandler` will return an `error`.
      */
-    public func projects(for apiKey: String, completion: ((Error?) -> ())?) -> [String]? {
-        if let completion = completion {
-            completion(nil)
-        }
-        
+    public func projects(for apiKey: String) throws -> [String] {
         return ["Personal", "School", "Lists", "Developer"]
     }
     
-    public func verify(apiKey: String, completion: ((Error?) -> ())?) -> Bool {
-        if let completion = completion {
-            completion(nil)
-        }
-        
-        return apiKey == "123" || apiKey == "456"
+    public func verify(apiKey: String) throws -> Bool {
+        return ["123", "456", "789", "1337"].contains(apiKey)
     }
     
-    public func post(csv: String) {
+    public func post(csv: String) throws {
         
     }
 }

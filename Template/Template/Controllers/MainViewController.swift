@@ -8,12 +8,10 @@
 
 import UIKit
 
-class MainViewController: UIViewController, UITextViewDelegate, SettingsDelegate, TodoistDelegate, CSVDelegate {
+class MainViewController: UIViewController, UITextViewDelegate {
     
-    // MARK: - Dependencies
-    var settings: Settings? 
-    var todoist: Todoist?
-    var csv: CSV?
+    typealias Dependencies = HasSettingsProvider & HasTodoistProvider & HasCSVProvider
+    var dependencies: Dependencies?
     
     // MARK: - Outlets
     @IBOutlet weak var shareButton: UIBarButtonItem!
@@ -30,13 +28,13 @@ class MainViewController: UIViewController, UITextViewDelegate, SettingsDelegate
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        print(settings?.apiKey ?? "No apiKey")
+        print(dependencies?.settings?.apiKey ?? "No apiKey")
     }
+    
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let controller = segue.destination as? SettingsViewController {
-            controller.settingsDelegate = self
-            controller.todoistDelegate = self
+            controller.dependencies = dependencies
         }
     }
 }
