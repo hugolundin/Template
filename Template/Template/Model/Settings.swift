@@ -16,7 +16,7 @@ protocol HasSettingsProvider {
     var settings: SettingsProvider? { get set }
 }
 
-class Local: SettingsProvider {
+final class Local: SettingsProvider {
     private let defaults = UserDefaults.standard
     
     var apiKey: String {
@@ -25,7 +25,11 @@ class Local: SettingsProvider {
         }
         
         set {
-            defaults.set(newValue, forKey: #function)
+            if newValue == "" {
+                defaults.removeObject(forKey: #function)
+            } else {
+                defaults.set(newValue, forKey: #function)
+            }
         }
     }
 }

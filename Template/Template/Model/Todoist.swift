@@ -37,7 +37,7 @@ public struct Todoist: TodoistProvider {
     }
     
     public func verify(apiKey: String) throws -> Bool {
-        return ["123", "456", "789", "1337"].contains(apiKey)
+        return ["123", "456", "789", "1337", "47641cbcb5807c3aa1759c350464f5c3a7afb49f"].contains(apiKey)
     }
     
     public func post(csv: String) throws {

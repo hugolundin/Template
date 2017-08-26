@@ -8,10 +8,7 @@
 
 import UIKit
 
-class SettingsViewController: UITableViewController, Alertable {
-    
-    typealias Dependencies = HasSettingsProvider & HasTodoistProvider
-    var dependencies: Dependencies?
+extension SettingsViewController {
     
     // MARK: - Constants
     private struct Constants {
@@ -25,13 +22,22 @@ class SettingsViewController: UITableViewController, Alertable {
         
         struct Colors {
             static let regular = UIColor.black
+            static let button  = UIColor(red: 0.21, green: 0.58, blue: 0.98, alpha: 1.00)
             static let warning = UIColor.red
         }
     }
+}
+
+class SettingsViewController: UITableViewController, Alertable {
+    
+    // MARK: - Dependencies
+    typealias Dependencies = HasSettingsProvider & HasTodoistProvider
+    var dependencies: Dependencies?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        configureAuthButton()
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -40,12 +46,19 @@ class SettingsViewController: UITableViewController, Alertable {
             return
         }
         
-        guard let _ = dependencies?.settings else {
+        guard let settings = dependencies?.settings else {
             return
         }
         
         if indexPath.row == Constants.Rows.add {
             
+            guard settings.apiKey == "" else {
+                settings.apiKey = ""
+                configureAuthButton()
+                tableView.deselectRow(at: indexPath, animated: true)
+                return
+            }
+                        
             let alert = UIAlertController(title: "Add API Key", message: "Enter your API key in the text field below", preferredStyle: .alert)
             
             alert.addTextField(configurationHandler: { (_ textField: UITextField) -> Void in
@@ -53,20 +66,21 @@ class SettingsViewController: UITableViewController, Alertable {
             })
             
             let confirm = UIAlertAction(title: "OK", style: .default, handler: {(_ action: UIAlertAction) -> Void in
-                if let apiKey = alert.textFields?[0].text {
-                    if let verify = try? todoist.verify(apiKey: apiKey), verify {
-                        tableView.cellForRow(at: IndexPath(row: Constants.Rows.add, section: 0))?.textLabel?.text = "Change"
-                        self.alert(title: "Success", message: "Your API key is valid.")
-                    } else {
-                        self.alert(title: "Failure", message: "Your API key was invalid. Please try again.")
-                    }
-                } else {
+                guard let apiKey = alert.textFields?[0].text else {
                     self.alert(title: "Invalid API Key")
+                    return
+                }
+                
+                if let verify = try? todoist.verify(apiKey: apiKey), verify {
+                    settings.apiKey = apiKey
+                    self.configureAuthButton()
+                } else {
+                    self.alert(title: "Error", message: "Your API Key was invalid. Please try again.")
                 }
             })
             
             let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: {(_ action: UIAlertAction) -> Void in
-                print("Canelled")
+                print("Cancelled")
             })
             
             alert.addAction(confirm)
@@ -75,6 +89,24 @@ class SettingsViewController: UITableViewController, Alertable {
             present(alert, animated: true, completion: nil)
             
             tableView.deselectRow(at: indexPath, animated: true)
+        }
+    }
+    
+    private func configureAuthButton() {
+        guard let settings = dependencies?.settings else {
+            return
+        }
+        
+        let cell = tableView.cellForRow(at: IndexPath(row: Constants.Rows.add, section: 0))
+        
+        if settings.apiKey == "" {
+            cell?.textLabel?.text = "Add"
+            cell?.detailTextLabel?.text = ""
+            cell?.textLabel?.textColor = Constants.Colors.button
+        } else {
+            cell?.textLabel?.text = "Remove"
+            cell?.detailTextLabel?.text = settings.apiKey
+            cell?.textLabel?.textColor = Constants.Colors.warning
         }
     }
 }
