@@ -14,7 +14,6 @@ extension SettingsViewController {
     private struct Constants {
         struct Rows {
             static let add: Int = 0
-            static let token: Int = 1
         }
         
         struct Sections {
@@ -35,12 +34,13 @@ class SettingsViewController: UITableViewController, Alertable {
     typealias Dependencies = HasSettingsProvider & HasTodoistProvider
     var dependencies: Dependencies?
     
-    override func viewDidAppear(_ animated: Bool) {
-        configureAPICell()
+    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        if indexPath.row == Constants.Rows.add {
+            configure(cell)
+        }
     }
     
-    
-    // TODO: Refactor Table View Configuration In Order to Avoid Lag
+    // TODO: Refactor method
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         guard let todoist = dependencies?.todoist else {
@@ -52,10 +52,11 @@ class SettingsViewController: UITableViewController, Alertable {
         }
         
         if indexPath.row == Constants.Rows.add {
-            
             guard settings.apiToken == "" else {
                 settings.apiToken = ""
-                configureAPICell()
+                
+                configure(tableView.cellForRow(at: IndexPath(row: Constants.Rows.add, section: 0))!)
+                
                 tableView.deselectRow(at: indexPath, animated: true)
                 return
             }
@@ -74,7 +75,7 @@ class SettingsViewController: UITableViewController, Alertable {
                 
                 if let verify = try? todoist.verify(apiKey: apiKey), verify {
                     settings.apiToken = apiKey
-                    self.configureAPICell()
+                    self.configure(tableView.cellForRow(at: IndexPath(row: Constants.Rows.add, section: 0))!)
                 } else {
                     self.alert(title: "Error", message: "Your API Key was invalid. Please try again.")
                 }
@@ -96,26 +97,22 @@ class SettingsViewController: UITableViewController, Alertable {
     /**
      Configure API Cell in Settings Screen.
      */
-    private func configureAPICell() {
+    private func configure(_ cell: UITableViewCell) {
         guard let settings = dependencies?.settings else {
-            return
-        }
-        
-        guard let field = tableView.cellForRow(at: IndexPath(row: Constants.Rows.add, section: 0)) else {
             return
         }
         
         // If API Token already has been set, show a remove button
         guard settings.apiToken == "" else {
-            field.textLabel?.text = "Remove"
-            field.textLabel?.textColor = Constants.Colors.warning
-            field.detailTextLabel?.text = settings.apiToken
+            cell.textLabel?.text = "Remove"
+            cell.textLabel?.textColor = Constants.Colors.warning
+            cell.detailTextLabel?.text = settings.apiToken
             return
         }
         
         // If API Token has not been set, show an add button
-        field.textLabel?.text = "Add"
-        field.textLabel?.textColor = Constants.Colors.button
-        field.detailTextLabel?.text = ""
+        cell.textLabel?.text = "Add"
+        cell.textLabel?.textColor = Constants.Colors.button
+        cell.detailTextLabel?.text = ""
     }
 }
