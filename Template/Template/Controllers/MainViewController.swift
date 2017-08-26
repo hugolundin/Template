@@ -28,7 +28,7 @@ class MainViewController: UIViewController, UITextViewDelegate {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        print(dependencies?.settings?.apiKey ?? "No apiKey")
+        print(dependencies?.settings?.apiToken ?? "No apiKey")
     }
     
     

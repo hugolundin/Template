@@ -14,10 +14,11 @@ extension SettingsViewController {
     private struct Constants {
         struct Rows {
             static let add: Int = 0
+            static let token: Int = 1
         }
         
         struct Sections {
-            static let apiKey: Int = 0
+            static let apiToken: Int = 0
         }
         
         struct Colors {
@@ -34,12 +35,12 @@ class SettingsViewController: UITableViewController, Alertable {
     typealias Dependencies = HasSettingsProvider & HasTodoistProvider
     var dependencies: Dependencies?
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        configureAuthButton()
+    override func viewDidAppear(_ animated: Bool) {
+        configureAPICell()
     }
     
+    
+    // TODO: Refactor Table View Configuration In Order to Avoid Lag
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         guard let todoist = dependencies?.todoist else {
@@ -52,9 +53,9 @@ class SettingsViewController: UITableViewController, Alertable {
         
         if indexPath.row == Constants.Rows.add {
             
-            guard settings.apiKey == "" else {
-                settings.apiKey = ""
-                configureAuthButton()
+            guard settings.apiToken == "" else {
+                settings.apiToken = ""
+                configureAPICell()
                 tableView.deselectRow(at: indexPath, animated: true)
                 return
             }
@@ -72,8 +73,8 @@ class SettingsViewController: UITableViewController, Alertable {
                 }
                 
                 if let verify = try? todoist.verify(apiKey: apiKey), verify {
-                    settings.apiKey = apiKey
-                    self.configureAuthButton()
+                    settings.apiToken = apiKey
+                    self.configureAPICell()
                 } else {
                     self.alert(title: "Error", message: "Your API Key was invalid. Please try again.")
                 }
@@ -92,21 +93,29 @@ class SettingsViewController: UITableViewController, Alertable {
         }
     }
     
-    private func configureAuthButton() {
+    /**
+     Configure API Cell in Settings Screen.
+     */
+    private func configureAPICell() {
         guard let settings = dependencies?.settings else {
             return
         }
         
-        let cell = tableView.cellForRow(at: IndexPath(row: Constants.Rows.add, section: 0))
-        
-        if settings.apiKey == "" {
-            cell?.textLabel?.text = "Add"
-            cell?.detailTextLabel?.text = ""
-            cell?.textLabel?.textColor = Constants.Colors.button
-        } else {
-            cell?.textLabel?.text = "Remove"
-            cell?.detailTextLabel?.text = settings.apiKey
-            cell?.textLabel?.textColor = Constants.Colors.warning
+        guard let field = tableView.cellForRow(at: IndexPath(row: Constants.Rows.add, section: 0)) else {
+            return
         }
+        
+        // If API Token already has been set, show a remove button
+        guard settings.apiToken == "" else {
+            field.textLabel?.text = "Remove"
+            field.textLabel?.textColor = Constants.Colors.warning
+            field.detailTextLabel?.text = settings.apiToken
+            return
+        }
+        
+        // If API Token has not been set, show an add button
+        field.textLabel?.text = "Add"
+        field.textLabel?.textColor = Constants.Colors.button
+        field.detailTextLabel?.text = ""
     }
 }

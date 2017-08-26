@@ -9,7 +9,7 @@
 import Foundation
 
 protocol SettingsProvider: class {
-    var apiKey: String { get set }
+    var apiToken: String { get set }
 }
 
 protocol HasSettingsProvider {
@@ -19,7 +19,7 @@ protocol HasSettingsProvider {
 final class Local: SettingsProvider {
     private let defaults = UserDefaults.standard
     
-    var apiKey: String {
+    var apiToken: String {
         get {
             return defaults.string(forKey: #function) ?? ""
         }
