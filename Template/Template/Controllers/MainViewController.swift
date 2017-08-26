@@ -27,11 +27,6 @@ class MainViewController: UIViewController, UITextViewDelegate {
         super.viewDidLoad()
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        print(dependencies?.settings?.apiToken ?? "No apiKey")
-    }
-    
-    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let controller = segue.destination as? SettingsViewController {
             controller.dependencies = dependencies

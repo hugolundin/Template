@@ -61,23 +61,23 @@ class SettingsViewController: UITableViewController, Alertable {
                 return
             }
                         
-            let alert = UIAlertController(title: "Add API Key", message: "Enter your API key in the text field below", preferredStyle: .alert)
+            let alert = UIAlertController(title: "Add API Token", message: "Enter your API token in the text field below", preferredStyle: .alert)
             
             alert.addTextField(configurationHandler: { (_ textField: UITextField) -> Void in
-                textField.placeholder = "API Key"
+                textField.placeholder = "API Token"
             })
             
             let confirm = UIAlertAction(title: "OK", style: .default, handler: {(_ action: UIAlertAction) -> Void in
-                guard let apiKey = alert.textFields?[0].text else {
-                    self.alert(title: "Invalid API Key")
+                guard let apiToken = alert.textFields?[0].text else {
+                    self.alert(title: "Invalid API Token")
                     return
                 }
                 
-                if let verify = try? todoist.verify(apiKey: apiKey), verify {
-                    settings.apiToken = apiKey
+                if let verify = try? todoist.verify(apiToken: apiToken), verify {
+                    settings.apiToken = apiToken
                     self.configure(tableView.cellForRow(at: IndexPath(row: Constants.Rows.add, section: 0))!)
                 } else {
-                    self.alert(title: "Error", message: "Your API Key was invalid. Please try again.")
+                    self.alert(title: "Error", message: "Your API token was invalid. Please try again.")
                 }
             })
             

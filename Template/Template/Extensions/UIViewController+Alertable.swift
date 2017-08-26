@@ -14,7 +14,7 @@ protocol Alertable {
 }
 
 extension Alertable where Self: UIViewController {
-    func alert(title: String, message: String = String.empty) {
+    func alert(title: String, message: String = "") {
         let controller = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let OK = UIAlertAction(title: "OK", style: .default)
         controller.addAction(OK)

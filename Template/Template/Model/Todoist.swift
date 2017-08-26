@@ -9,8 +9,8 @@
 import Foundation
 
 protocol TodoistProvider {
-    func projects(for apiKey: String) throws -> [String]
-    func verify(apiKey: String) throws -> Bool
+    func projects(for apiToken: String) throws -> [String]
+    func verify(apiToken: String) throws -> Bool
     func post(csv: String) throws
 }
 
@@ -32,12 +32,12 @@ public struct Todoist: TodoistProvider {
     /**
      Return projects coupled with current `apiKey`. If the key isn't valid, function will return `nil` and `completionHandler` will return an `error`.
      */
-    public func projects(for apiKey: String) throws -> [String] {
+    public func projects(for apiToken: String) throws -> [String] {
         return ["Personal", "School", "Lists", "Developer"]
     }
     
-    public func verify(apiKey: String) throws -> Bool {
-        return ["123", "456", "789", "1337", "47641cbcb5807c3aa1759c350464f5c3a7afb49f"].contains(apiKey)
+    public func verify(apiToken: String) throws -> Bool {
+        return ["123", "456", "789", "1337", "47641cbcb5807c3aa1759c350464f5c3a7afb49f"].contains(apiToken)
     }
     
     public func post(csv: String) throws {
