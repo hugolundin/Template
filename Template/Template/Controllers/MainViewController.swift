@@ -27,6 +27,24 @@ class MainViewController: UIViewController, UITextViewDelegate {
         super.viewDidLoad()
     }
     
+    @IBAction func share(_ sender: UIBarButtonItem) {
+        
+        guard let text = textView?.text else {
+            return
+        }
+        
+        guard let file = try? dependencies?.csv?.file(from: text) else {
+            return
+        }
+        
+        guard let fileURL = file else {
+            return
+        }
+        
+        let controller = ShareViewController(with: fileURL)
+        present(controller, animated: true, completion: nil)
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let controller = segue.destination as? SettingsViewController {
             controller.dependencies = dependencies
