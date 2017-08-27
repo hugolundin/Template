@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MainViewController: UIViewController, UITextViewDelegate {
+class MainViewController: UIViewController, UITextViewDelegate, Alertable {
     
     typealias Dependencies = HasSettingsProvider & HasTodoistProvider & HasCSVProvider
     var dependencies: Dependencies?
@@ -33,6 +33,17 @@ class MainViewController: UIViewController, UITextViewDelegate {
             return
         }
         
+        guard text.count > 0 else {
+            alert(title: "Error", message: "You have not entered any text.")
+            return
+        }
+        
+        // Replace share button with loading spinner
+        let loading = UIActivityIndicatorView(activityIndicatorStyle: .gray)
+        loading.hidesWhenStopped = true
+        loading.startAnimating()
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: loading)
+        
         guard let file = try? dependencies?.csv?.file(from: text) else {
             return
         }
@@ -42,7 +53,9 @@ class MainViewController: UIViewController, UITextViewDelegate {
         }
         
         let controller = ShareViewController(with: fileURL)
-        present(controller, animated: true, completion: nil)
+        present(controller, animated: true, completion: {
+            loading.stopAnimating()
+        })
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
