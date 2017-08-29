@@ -10,6 +10,7 @@ import Foundation
 
 protocol CSVProvider {
     func file(from text: String) throws -> URL?
+    func verify(text: String) -> Bool
 }
 
 protocol HasCSVProvider {
@@ -32,7 +33,7 @@ struct CSV: CSVProvider {
      
      - Returns: URL Representing Generated File.
      */
-    func file(from text: String) throws -> URL? {
+    public func file(from text: String) throws -> URL? {
         
         guard let file =
             NSURL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent("\(Constants.filename).csv") else {
@@ -49,6 +50,10 @@ struct CSV: CSVProvider {
         }
         
         return file
+    }
+    
+    public func verify(text: String) -> Bool {
+        return true
     }
     
     private func generate(from text: String) -> String {

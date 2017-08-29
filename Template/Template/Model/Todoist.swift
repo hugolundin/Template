@@ -11,7 +11,7 @@ import Foundation
 protocol TodoistProvider {
     func projects(for apiToken: String) throws -> [String]
     func verify(apiToken: String) throws -> Bool
-    func post(csv: String) throws
+    func upload(_ file: URL) throws
 }
 
 protocol HasTodoistProvider {
@@ -40,7 +40,7 @@ public struct Todoist: TodoistProvider {
         return ["123", "456", "789", "1337", "47641cbcb5807c3aa1759c350464f5c3a7afb49f"].contains(apiToken)
     }
     
-    public func post(csv: String) throws {
+    public func upload(_ file: URL) throws {
         
     }
 }

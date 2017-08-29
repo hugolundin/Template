@@ -88,8 +88,7 @@ class SettingsViewController: UITableViewController, Alertable {
             alert.addAction(confirm)
             alert.addAction(cancel)
             
-            present(alert, animated: true, completion: nil)
-            
+            self.present(alert, animated: true, completion: nil)
             tableView.deselectRow(at: indexPath, animated: true)
         }
     }

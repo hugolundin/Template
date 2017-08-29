@@ -38,7 +38,7 @@ class MainViewController: UIViewController, UITextViewDelegate, Alertable {
             return
         }
         
-        // Replace share button with loading spinner
+        // Replace share button with activity indicator
         let loading = UIActivityIndicatorView(activityIndicatorStyle: .gray)
         loading.hidesWhenStopped = true
         loading.startAnimating()
@@ -54,7 +54,10 @@ class MainViewController: UIViewController, UITextViewDelegate, Alertable {
         
         let controller = ShareViewController(with: fileURL)
         present(controller, animated: true, completion: {
+            
+            // Stop activity indicator and replace it with the `shareButton`
             loading.stopAnimating()
+            self.navigationItem.rightBarButtonItem = self.shareButton
         })
     }
     
