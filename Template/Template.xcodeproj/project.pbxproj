@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		F03CC7061F3DC49D00DC59BE /* Introduction.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F03CC7051F3DC49D00DC59BE /* Introduction.storyboard */; };
+		F07B74931F5577C600368BC4 /* CSVTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F07B74921F5577C600368BC4 /* CSVTests.swift */; };
+		F07B74951F5577CD00368BC4 /* TodoistTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F07B74941F5577CD00368BC4 /* TodoistTests.swift */; };
+		F07B74971F5577D500368BC4 /* SettingsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F07B74961F5577D500368BC4 /* SettingsTests.swift */; };
 		F07B841A1F3DBE2C00AD6C52 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = F07B84191F3DBE2C00AD6C52 /* Settings.swift */; };
 		F08D60271F4EC6D2006394D8 /* AppDependencies.swift in Sources */ = {isa = PBXBuildFile; fileRef = F08D60261F4EC6D2006394D8 /* AppDependencies.swift */; };
 		F09301131F49C7D80042D948 /* Todoist.swift in Sources */ = {isa = PBXBuildFile; fileRef = F09301121F49C7D80042D948 /* Todoist.swift */; };
@@ -24,6 +27,7 @@
 		F0E2107A1F52162A002A2828 /* String+lines.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0E210791F52162A002A2828 /* String+lines.swift */; };
 		F0EA45181F4F054E002B4B59 /* UIViewController+Alertable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0EA45171F4F054E002B4B59 /* UIViewController+Alertable.swift */; };
 		F0F8DF031F52CAF20084BF6D /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0F8DF021F52CAF20084BF6D /* ShareViewController.swift */; };
+		F0FC1D111F5977B20025C293 /* ExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0FC1D101F5977B20025C293 /* ExtensionTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,6 +42,9 @@
 
 /* Begin PBXFileReference section */
 		F03CC7051F3DC49D00DC59BE /* Introduction.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Introduction.storyboard; path = Views/Introduction.storyboard; sourceTree = "<group>"; };
+		F07B74921F5577C600368BC4 /* CSVTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSVTests.swift; sourceTree = "<group>"; };
+		F07B74941F5577CD00368BC4 /* TodoistTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoistTests.swift; sourceTree = "<group>"; };
+		F07B74961F5577D500368BC4 /* SettingsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTests.swift; sourceTree = "<group>"; };
 		F07B84191F3DBE2C00AD6C52 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Settings.swift; path = Model/Settings.swift; sourceTree = "<group>"; };
 		F08D60261F4EC6D2006394D8 /* AppDependencies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDependencies.swift; path = "Supporting Files/AppDependencies.swift"; sourceTree = "<group>"; };
 		F09301121F49C7D80042D948 /* Todoist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Todoist.swift; path = Model/Todoist.swift; sourceTree = "<group>"; };
@@ -58,6 +65,7 @@
 		F0E210791F52162A002A2828 /* String+lines.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "String+lines.swift"; path = "Extensions/String+lines.swift"; sourceTree = "<group>"; };
 		F0EA45171F4F054E002B4B59 /* UIViewController+Alertable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "UIViewController+Alertable.swift"; path = "Extensions/UIViewController+Alertable.swift"; sourceTree = "<group>"; };
 		F0F8DF021F52CAF20084BF6D /* ShareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ShareViewController.swift; path = Controllers/ShareViewController.swift; sourceTree = "<group>"; };
+		F0FC1D101F5977B20025C293 /* ExtensionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,6 +86,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		F07B74981F5577DC00368BC4 /* Providers */ = {
+			isa = PBXGroup;
+			children = (
+				F07B74941F5577CD00368BC4 /* TodoistTests.swift */,
+				F07B74961F5577D500368BC4 /* SettingsTests.swift */,
+				F07B74921F5577C600368BC4 /* CSVTests.swift */,
+			);
+			path = Providers;
+			sourceTree = "<group>";
+		};
 		F09BB27B1F3CFE95009077F2 = {
 			isa = PBXGroup;
 			children = (
@@ -113,7 +131,9 @@
 		F09BB29B1F3CFE95009077F2 /* TemplateTests */ = {
 			isa = PBXGroup;
 			children = (
+				F07B74981F5577DC00368BC4 /* Providers */,
 				F09BB29C1F3CFE95009077F2 /* TemplateTests.swift */,
+				F0FC1D101F5977B20025C293 /* ExtensionTests.swift */,
 				F09BB29E1F3CFE95009077F2 /* Info.plist */,
 			);
 			path = TemplateTests;
@@ -296,7 +316,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F0FC1D111F5977B20025C293 /* ExtensionTests.swift in Sources */,
+				F07B74931F5577C600368BC4 /* CSVTests.swift in Sources */,
 				F09BB29D1F3CFE95009077F2 /* TemplateTests.swift in Sources */,
+				F07B74971F5577D500368BC4 /* SettingsTests.swift in Sources */,
+				F07B74951F5577CD00368BC4 /* TodoistTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

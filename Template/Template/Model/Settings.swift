@@ -17,7 +17,11 @@ protocol HasSettingsProvider {
 }
 
 final class Local: SettingsProvider {
-    private let defaults = UserDefaults.standard
+    private let defaults: UserDefaults
+    
+    init(defaults: UserDefaults = UserDefaults.standard) {
+        self.defaults = defaults
+    }
     
     var apiToken: String {
         get {
