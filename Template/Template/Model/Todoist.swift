@@ -9,9 +9,9 @@
 import Foundation
 
 protocol TodoistProvider {
-    func projects(for apiToken: String) throws -> [String]
-    func verify(apiToken: String) throws -> Bool
-    func upload(_ file: URL) throws
+    func projects(for apiToken: String, completion: @escaping (([String]) -> ()))
+    func verify(apiToken: String, completion: @escaping (Bool, Error?) -> ())
+    func upload(_ file: URL, completion: @escaping (Error?) -> ())
 }
 
 protocol HasTodoistProvider {
@@ -32,15 +32,21 @@ public struct Todoist: TodoistProvider {
     /**
      Return projects coupled with current `apiKey`. If the key isn't valid, function will return `nil` and `completionHandler` will return an `error`.
      */
-    public func projects(for apiToken: String) throws -> [String] {
-        return ["Personal", "School", "Lists", "Developer"]
+    func projects(for apiToken: String, completion: @escaping (([String]) -> ())) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(4), execute: {
+            completion(["Personal", "School", "Lists", "Developer"])
+        })
     }
     
-    public func verify(apiToken: String) throws -> Bool {
-        return ["123", "456", "789", "1337", "47641cbcb5807c3aa1759c350464f5c3a7afb49f"].contains(apiToken)
+    public func verify(apiToken: String, completion: @escaping (Bool, Error?) -> ()) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(4), execute: {
+            completion(["123", "456", "789", "1337", "47641cbcb5807c3aa1759c350464f5c3a7afb49f"].contains(apiToken), nil)
+        })
     }
     
-    public func upload(_ file: URL) throws {
-        
+    public func upload(_ file: URL, completion: @escaping (Error?) -> ()) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(4), execute: {
+            completion(nil)
+        })
     }
 }

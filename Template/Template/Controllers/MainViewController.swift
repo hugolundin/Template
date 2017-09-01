@@ -52,7 +52,7 @@ class MainViewController: UIViewController, UITextViewDelegate, Alertable {
             return
         }
         
-        let controller = ShareViewController(with: fileURL)
+        let controller = ShareViewController(with: fileURL, dependencies: dependencies)
         present(controller, animated: true, completion: {
             
             // Stop activity indicator and replace it with the `shareButton`

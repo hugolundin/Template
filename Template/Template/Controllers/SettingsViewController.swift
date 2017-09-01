@@ -73,11 +73,18 @@ class SettingsViewController: UITableViewController, Alertable {
                     return
                 }
                 
-                if let verify = try? todoist.verify(apiToken: apiToken), verify {
+                todoist.verify(apiToken: apiToken) { result, error in
+                    guard error == nil else {
+                        return
+                    }
+                    
+                    guard result else {
+                        self.alert(title: "Error", message: "Your API token was invalid. Please try again.")
+                        return
+                    }
+                    
                     settings.apiToken = apiToken
                     self.configure(tableView.cellForRow(at: IndexPath(row: Constants.Rows.add, section: 0))!)
-                } else {
-                    self.alert(title: "Error", message: "Your API token was invalid. Please try again.")
                 }
             })
             
