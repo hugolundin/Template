@@ -92,6 +92,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		F06A39111F5A997D00DEF0C0 /* Activities */ = {
+			isa = PBXGroup;
+			children = (
+				F0D0DAAA1F59F9D00048E618 /* TodoistActivity.swift */,
+			);
+			name = Activities;
+			sourceTree = "<group>";
+		};
 		F07B74981F5577DC00368BC4 /* Providers */ = {
 			isa = PBXGroup;
 			children = (
@@ -158,6 +166,7 @@
 		F09BB2A81F3CFF66009077F2 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				F06A39111F5A997D00DEF0C0 /* Activities */,
 				F09BB28B1F3CFE95009077F2 /* Main.storyboard */,
 				F03CC7051F3DC49D00DC59BE /* Introduction.storyboard */,
 				F0B9A41E1F49A07000482EE3 /* Settings.storyboard */,
@@ -173,7 +182,6 @@
 				F0B9A41C1F49A04900482EE3 /* SettingsViewController.swift */,
 				F0F8DF021F52CAF20084BF6D /* ShareViewController.swift */,
 				F0FC1D141F5980050025C293 /* TodoistViewController.swift */,
-				F0D0DAAA1F59F9D00048E618 /* TodoistActivity.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
