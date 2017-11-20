@@ -67,7 +67,7 @@ class SettingsViewController: UITableViewController, Alertable {
                 textField.placeholder = "API Token"
             })
             
-            let confirm = UIAlertAction(title: "OK", style: .default, handler: {(_ action: UIAlertAction) -> Void in
+            let confirm = UIAlertAction(title: "OK", style: .default, handler: {(_ action: UIAlertAction) -> Void in 
                 guard let apiToken = alert.textFields?[0].text else {
                     self.alert(title: "Invalid API Token")
                     return

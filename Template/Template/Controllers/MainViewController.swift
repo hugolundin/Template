@@ -33,6 +33,13 @@ class MainViewController: UIViewController, UITextViewDelegate, Alertable {
             return
         }
         
+        // Make sure that user is authenticated
+        if dependencies?.settings?.apiToken == "" {
+            alert(title: "Error", message: "You are not authenticated.\n Please go to settings and enter your API token.")
+            return
+        }
+        
+        // Make sure that any text is entered
         guard text.count > 0 else {
             alert(title: "Error", message: "You have not entered any text.")
             return

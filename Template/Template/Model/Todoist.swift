@@ -23,8 +23,7 @@ protocol HasTodoistProvider {
  */
 public struct Todoist: TodoistProvider {
     internal struct URLs {
-        static let sync: URL = URL(string: "https://todoist.com/API/v7/sync")!
-        static let `import`: URL = URL(string: "https://todoist.com/API/v7/templates/import_into_project")!
+        static let base = "https://beta.todoist.com/API/v8"
     }
     
     private let limit: Int = 100
@@ -33,20 +32,37 @@ public struct Todoist: TodoistProvider {
      Return projects coupled with current `apiKey`. If the key isn't valid, function will return `nil` and `completionHandler` will return an `error`.
      */
     func projects(for apiToken: String, completion: @escaping (([String]) -> ())) {
-        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(4), execute: {
-            completion(["Personal", "School", "Lists", "Developer"])
-        })
+        completion(["Personal", "School", "Lists", "Developer"])
     }
     
     public func verify(apiToken: String, completion: @escaping (Bool, Error?) -> ()) {
-        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(4), execute: {
-            completion(["123", "456", "789", "1337", "47641cbcb5807c3aa1759c350464f5c3a7afb49f"].contains(apiToken), nil)
-        })
+        
+        let session = URLSession(configuration: .ephemeral, delegate: nil, delegateQueue: OperationQueue.main)
+        print("\(URLs.base)/projects?token=\(apiToken)")
+        let url = URL(string: "\(URLs.base)/projects?token=\(apiToken)")!
+        let task = session.dataTask(with: url) { (data, response, error) -> Void in
+            guard error == nil else {
+                completion(false, error)
+                return
+            }
+            
+            guard let data = data else {
+                completion(false, error)
+                return
+            }
+            
+            guard let _ = try? JSONSerialization.jsonObject(with: data, options: .mutableContainers) else {
+                completion(false, error)
+                return
+            }
+            
+            completion(true, nil)
+        }
+        
+        task.resume()
     }
     
     public func upload(_ file: URL, completion: @escaping (Error?) -> ()) {
-        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(4), execute: {
-            completion(nil)
-        })
+        completion(nil)
     }
 }
